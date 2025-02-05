@@ -35,13 +35,13 @@
                 <div class="position-relative mb-5">
                     <img src="assets/images/gallery/profile-cover.png" class="img-fluid rounded-4 shadow" alt="">
                     <div class="profile-avatar position-absolute top-100 start-50 translate-middle">
-                        <img src="assets/images/avatars/01.png" class="img-fluid rounded-4 p-1 bg-grd-danger shadow" alt="" dmx-bind:src="sc_usuario_atual.data.buscar_usuario.foto" width="150" height="150">
+                        <img src="assets/images/avatars/01.png" class="img-fluid rounded-4 p-1  shadow" alt="" dmx-bind:src="sc_usuario_atual.data.buscar_usuario.foto" width="150" height="150">
                     </div>
                 </div>
                 <div class="profile-info pt-5 d-flex align-items-center justify-content-between">
                     <div class="">
                         <h3>{{sc_usuario_atual.data.buscar_usuario.nome}}</h3>
-                        <p class="mb-0">Quantos pontos você tem: 7263763</p>
+                        <p class="mb-0">{{sc_usuario_atual.data.buscar_usuario.email}}</p>
                     </div>
                     <div class="">
                     </div>

@@ -25,6 +25,8 @@
 </head>
 
 <body is="dmx-app" id="main">
+  <div is="dmx-browser" id="browser1"></div>
+  <dmx-notifications id="notifies1"></dmx-notifications>
   <div is="dmx-view" id="content">
     <%- await include(content, locals); %>
   </div>

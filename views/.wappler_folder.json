@@ -66,5 +66,13 @@
   "itv_task_demander.ejs": {
     "layoutPage": "main",
     "description": ""
+  },
+  "ranking_selos.ejs": {
+    "layoutPage": "dashboard_aluno",
+    "description": ""
+  },
+  "esqueceu.ejs": {
+    "layoutPage": "dashboard",
+    "description": ""
   }
 }

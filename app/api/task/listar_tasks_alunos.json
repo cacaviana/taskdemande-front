@@ -20,144 +20,129 @@
     ]
   },
   "exec": {
-    "steps": {
-      "name": "query_tasks_alunos",
-      "module": "dbconnector",
-      "action": "paged",
-      "options": {
-        "connection": "dbmasterclasse",
-        "sql": {
-          "type": "select",
-          "columns": [
-            {
-              "table": "tarefas",
-              "column": "*",
-              "schema": "itv"
-            }
-          ],
-          "params": [],
-          "table": {
-            "name": "tarefas",
-            "schema": "itv"
-          },
-          "primary": "id",
-          "joins": [],
-          "orders": [
-            {
-              "table": "tarefas",
-              "column": "id",
-              "direction": "DESC",
-              "recid": 1,
-              "schema": "itv"
-            }
-          ],
-          "query": "select * from [itv].[tarefas] order by [id] DESC",
-          "wheres": {
-            "condition": "AND",
-            "rules": [],
-            "conditional": null,
-            "valid": true
-          }
-        }
+    "steps": [
+      {
+        "name": "identity",
+        "module": "auth",
+        "action": "identify",
+        "options": {
+          "provider": "security_official"
+        },
+        "output": true,
+        "meta": []
       },
-      "output": true,
-      "meta": [
-        {
-          "name": "offset",
-          "type": "number"
-        },
-        {
-          "name": "limit",
-          "type": "number"
-        },
-        {
-          "name": "total",
-          "type": "number"
-        },
-        {
-          "name": "page",
-          "type": "object",
-          "sub": [
-            {
-              "name": "offset",
-              "type": "object",
-              "sub": [
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "dbmasterclasse",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "itv.usuarios",
+                "column": "id",
+                "recid": 1
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{identity}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "itv.usuarios"
+            },
+            "primary": "id",
+            "joins": [],
+            "wheres": {
+              "condition": "AND",
+              "rules": [
                 {
-                  "name": "first",
-                  "type": "number"
-                },
-                {
-                  "name": "prev",
-                  "type": "number"
-                },
-                {
-                  "name": "next",
-                  "type": "number"
-                },
-                {
-                  "name": "last",
-                  "type": "number"
+                  "id": "itv.usuarios.id",
+                  "field": "itv.usuarios.id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{identity}}",
+                  "data": {
+                    "table": "itv.usuarios",
+                    "column": "id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "integer",
+                      "primary": "PRIMARY",
+                      "nullable": false,
+                      "name": "id"
+                    }
+                  },
+                  "operation": "=",
+                  "table": "itv.usuarios"
                 }
-              ]
+              ],
+              "conditional": null,
+              "valid": true
             },
-            {
-              "name": "current",
-              "type": "number"
-            },
-            {
-              "name": "total",
-              "type": "number"
-            }
-          ]
+            "query": "select [id] from [itv].[usuarios] where [itv].[usuarios].[id] = @p0"
+          }
         },
-        {
-          "name": "data",
-          "type": "array",
-          "sub": [
-            {
-              "type": "number",
-              "name": "id"
-            },
-            {
-              "type": "text",
-              "name": "nome"
-            },
-            {
-              "type": "text",
-              "name": "descricao"
-            },
-            {
-              "type": "number",
-              "name": "estimativa_horas"
-            },
-            {
-              "type": "text",
-              "name": "status"
-            },
-            {
-              "type": "date",
-              "name": "data_inicio"
-            },
-            {
-              "type": "date",
-              "name": "data_termino_prevista"
-            },
-            {
-              "type": "number",
-              "name": "usuario_id"
-            },
-            {
-              "type": "date",
-              "name": "data_fim_realizado"
-            },
-            {
-              "type": "text",
-              "name": "nivel"
-            }
-          ]
-        }
-      ],
-      "outputType": "object"
-    }
+        "output": true,
+        "meta": [
+          {
+            "type": "number",
+            "name": "id"
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "query_tasks_alunos",
+        "module": "dbupdater",
+        "action": "custom",
+        "options": {
+          "connection": "dbmasterclasse",
+          "sql": {
+            "query": "SELECT t.id, t.nome, t.descricao, t.estimativa_horas, t.nivel, t.pontuacao\nFROM itv.tarefas t\nLEFT JOIN itv.usuarios_tarefas ut\nON t.id = ut.tarefa_id AND ut.usuario_id = :P1\nWHERE ut.tarefa_id IS NULL;",
+            "params": [
+              {
+                "name": ":P1",
+                "value": "{{query.id}}"
+              }
+            ]
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "name": "id",
+            "type": "number"
+          },
+          {
+            "name": "nome",
+            "type": "text"
+          },
+          {
+            "name": "descricao",
+            "type": "text"
+          },
+          {
+            "name": "estimativa_horas",
+            "type": "number"
+          },
+          {
+            "name": "nivel",
+            "type": "text"
+          },
+          {
+            "name": "pontuacao",
+            "type": "number"
+          }
+        ]
+      }
+    ]
   }
 }

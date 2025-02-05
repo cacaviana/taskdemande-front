@@ -4,6 +4,10 @@
       {
         "type": "number",
         "name": "tarefa_id"
+      },
+      {
+        "type": "number",
+        "name": "pontos"
       }
     ]
   },
@@ -117,11 +121,17 @@
                 "column": "status",
                 "type": "text",
                 "value": "Andamento"
+              },
+              {
+                "table": "itv.usuarios_tarefas",
+                "column": "pontos",
+                "type": "number",
+                "value": "{{$_POST.pontos}}"
               }
             ],
             "table": "itv.usuarios_tarefas",
             "returning": "id",
-            "query": "select top(0) [t].[id] into #out from [itv].[usuarios_tarefas] as t left join [itv].[usuarios_tarefas] on 0=1;insert into [itv].[usuarios_tarefas] ([data_atribuicao], [status], [tarefa_id], [usuario_id]) output inserted.[id] into #out values (@p0, @p1, @p2, @p3); select [id] from #out; drop table #out;",
+            "query": "select top(0) [t].[id] into #out from [itv].[usuarios_tarefas] as t left join [itv].[usuarios_tarefas] on 0=1;insert into [itv].[usuarios_tarefas] ([data_atribuicao], [pontos], [status], [tarefa_id], [usuario_id]) output inserted.[id] into #out values (@p0, @p1, @p2, @p3, @p4); select [id] from #out; drop table #out;",
             "params": [
               {
                 "name": ":P1",
@@ -139,6 +149,12 @@
                 "name": ":P3",
                 "type": "expression",
                 "value": "{{NOW}}",
+                "test": ""
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.pontos}}",
                 "test": ""
               }
             ]

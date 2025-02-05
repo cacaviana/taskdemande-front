@@ -44,6 +44,10 @@
   <link rel="stylesheet" href="/dmxAppConnect/dmxValidator/dmxValidator.css" />
   <script src="/dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
   <script src="/dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
+  <script src="/dmxAppConnect/dmxCharts/Chart.min.js" defer></script>
+  <script src="/dmxAppConnect/dmxCharts/dmxCharts.js" defer></script>
+  <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+  <script src="/dmxAppConnect/dmxVideo/dmxVideo.js" defer></script>
 </head>
 
 <body is="dmx-app" id="dashboard">
@@ -165,52 +169,6 @@
       </div>
       <ul class="navbar-nav gap-1 nav-right-links align-items-center">
 
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">notifications</i>
-            <span class="badge-notify">5</span>
-          </a>
-          <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
-            <div class="px-3 py-1 d-flex align-items-center justify-content-between border-bottom">
-              <h5 class="notiy-title mb-0 pb-3">Notifications</h5>
-            </div>
-            <div class="notify-list">
-              <div>
-                <a class="dropdown-item border-bottom py-2" href="javascript:;">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="">
-                      <img src="assets/images/top-products/icontasks.png" class="rounded-circle" width="45" height="45" alt="">
-                    </div>
-                    <div class="">
-                      <h5 class="notify-title">Nova Task adicionada</h5>
-                      <p class="mb-0 notify-desc">E ai, vamos codar? Veja os detalhes da task!</p>
-                      <p class="mb-0 notify-time">Hoje</p>
-                    </div>
-                    <div class="notify-close position-absolute end-0 me-3">
-                      <i class="material-icons-outlined fs-6">close</i>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div>
-                <a class="dropdown-item border-bottom py-2" href="javascript:;">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="">
-                      <img src="assets/images/top-products/icontasks.png" class="rounded-circle" width="45" height="45" alt="">
-                    </div>
-                    <div class="">
-                      <h5 class="notify-title">Nova Task adicionada</h5>
-                      <p class="mb-0 notify-desc">E ai, vamos codar? Veja os detalhes da task!</p>
-                      <p class="mb-0 notify-time">Hoje</p>
-                    </div>
-                    <div class="notify-close position-absolute end-0 me-3">
-                      <i class="material-icons-outlined fs-6">close</i>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
         <li class="nav-item dropdown">
           <a href="javascript:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
             <img src="assets/images/avatars/foto-asaph.png" class="rounded-circle p-1 border" width="45" height="45" alt="" dmx-bind:src="sc_usuario_atual.data.buscar_usuario.foto">
@@ -275,6 +233,11 @@
             </div>
             <div class="menu-title">Meu perfil</div>
           </a>
+          <a href="/ranking_selos">
+            <div class="parent-icon"><i class="material-icons-outlined">star</i>
+            </div>
+            <div class="menu-title">Ranking (Selos)</div>
+          </a>
         </li>
         <li class="menu-label">Ajuda</li>
         <li>
@@ -285,7 +248,7 @@
           </a>
         </li>
         <li>
-          <a href="https://api.whatsapp.com/send?phone=559870283598" target="_blank">
+          <a href="https://api.whatsapp.com/send?phone=5544999161570" target="_blank">
             <div class="parent-icon"><i class="material-icons-outlined">support</i>
             </div>
             <div class="menu-title">Suporte</div>
@@ -319,7 +282,7 @@
 
   <!--start footer-->
   <footer class="page-footer">
-    <p class="mb-0">Copyright © 2024. All right reserved.</p>
+    <p class="mb-0">IT Valley School © 2025. All right reserved.</p>
   </footer>
   <!--end footer-->
 
@@ -329,60 +292,40 @@
 
 
   <!--start switcher-->
-  <button class="btn btn-grd btn-grd-primary position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
-    <i class="material-icons-outlined">tune</i></button>
+  <div class="d-flex justify-content-center gap-2 position-fixed bottom-0 end-0 m-3">
+    <button class="btn btn-grd btn-grd-primary d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat_openai">
+      <i class="material-icons-outlined">mark_chat_unread</i>
+    </button>
+  </div>
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="staticBackdrop">
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="chat_openai">
     <div class="offcanvas-header border-bottom h-70">
-      <div class="">
-        <h5 class="mb-0">Customize o tema</h5>
-      </div>
+      <h5 class="mb-0">Converse com a IA</h5>
       <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="offcanvas">
         <i class="material-icons-outlined">close</i>
       </a>
     </div>
-    <div class="offcanvas-body">
-      <div>
-        <p>Variação de temas</p>
 
-        <div class="row g-3">
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="BlueTheme" checked>
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BlueTheme">
-              <span class="material-icons-outlined">contactless</span>
-              <span>Blue</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="LightTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="LightTheme">
-              <span class="material-icons-outlined">light_mode</span>
-              <span>Light</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="DarkTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="DarkTheme">
-              <span class="material-icons-outlined">dark_mode</span>
-              <span>Dark</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="SemiDarkTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="SemiDarkTheme">
-              <span class="material-icons-outlined">contrast</span>
-              <span>Semi Dark</span>
-            </label>
-          </div>
-          <div class="col-12 col-xl-6">
-            <input type="radio" class="btn-check" name="theme-options" id="BoderedTheme">
-            <label class="btn btn-outline-secondary d-flex flex-column gap-1 align-items-center justify-content-center p-4" for="BoderedTheme">
-              <span class="material-icons-outlined">border_style</span>
-              <span>Bordered</span>
-            </label>
-          </div>
-        </div><!--end row-->
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <!-- Área de mensagens -->
+      <div id="chat-messages" class="flex-grow-1 overflow-auto mb-3 p-2">
+        <!-- Mensagem inicial -->
+        <div class="chat-message bot-message p-2 mb-2 bg-light rounded">
+          Olá! Sou a IA da IT Valley, posso ajudar?
+        </div>
+      </div>
 
+      <!-- Indicador de carregamento -->
+      <div id="typing-indicator" class="d-none text-muted small mb-2">
+        A IA está digitando...
+      </div>
+
+      <!-- Campo de entrada de mensagens -->
+      <div class="input-group">
+        <input type="text" id="user-input" class="form-control" placeholder="Digite sua mensagem..." aria-label="Digite sua mensagem">
+        <button class="btn btn-primary" id="send-button" type="button">
+          <i class="material-icons-outlined">send</i>
+        </button>
       </div>
     </div>
   </div>
@@ -408,7 +351,8 @@
     new PerfectScrollbar(".user-list")
   </script>
 
-  <script src="assets/bootstrap/5/js/bootstrap.min.js"></script>
+  <script src="/assets/bootstrap/5/js/bootstrap.min.js"></script>
+  <script src="/assets/js/chat_deep.js"></script>
 </body>
 
 </html>

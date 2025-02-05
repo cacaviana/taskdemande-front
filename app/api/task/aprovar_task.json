@@ -8,6 +8,10 @@
       {
         "type": "text",
         "name": "status"
+      },
+      {
+        "type": "number",
+        "name": "pontos"
       }
     ]
   },

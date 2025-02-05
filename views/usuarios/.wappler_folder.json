@@ -38,5 +38,9 @@
   "cadastro.ejs": {
     "layoutPage": "main",
     "description": ""
+  },
+  "resete_senha.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

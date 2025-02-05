@@ -1,285 +1,85 @@
 dmx.config({
-  "Aprovar_tasks": {
-    "repeat_task": {
+  "painel_aluno": {
+    "repeat_tasks_alunos": {
       "meta": [
         {
-          "type": "number",
-          "name": "id"
-        },
-        {
-          "type": "number",
-          "name": "usuario_id"
-        },
-        {
-          "type": "number",
-          "name": "tarefa_id"
-        },
-        {
-          "type": "datetime",
-          "name": "data_atribuicao"
-        },
-        {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "datetime",
-          "name": "data_enviada"
-        },
-        {
-          "type": "datetime",
-          "name": "data_aprovada"
-        },
-        {
-          "type": "text",
-          "name": "info_envio"
-        },
-        {
-          "type": "text",
-          "name": "nome_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "descricao_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nivel_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nome_usuario"
-        },
-        {
-          "type": "text",
-          "name": "foto_usuario"
-        }
-      ],
-      "outputType": "array"
-    },
-    "reapeat_listar_aprovacao": {
-      "meta": [
-        {
-          "name": "$index",
+          "name": "id",
           "type": "number"
         },
         {
-          "name": "$key",
+          "name": "nome",
           "type": "text"
         },
         {
-          "name": "$value",
-          "type": "object"
+          "name": "descricao",
+          "type": "text"
         },
         {
-          "type": "number",
-          "name": "id"
+          "name": "estimativa_horas",
+          "type": "number"
         },
         {
-          "type": "number",
-          "name": "usuario_id"
-        },
-        {
-          "type": "number",
-          "name": "tarefa_id"
-        },
-        {
-          "type": "datetime",
-          "name": "data_atribuicao"
-        },
-        {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "datetime",
-          "name": "data_enviada"
-        },
-        {
-          "type": "datetime",
-          "name": "data_aprovada"
-        },
-        {
-          "type": "text",
-          "name": "info_envio"
-        },
-        {
-          "type": "text",
-          "name": "nome_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "descricao_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nivel_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nome_usuario"
-        },
-        {
-          "type": "text",
-          "name": "foto_usuario"
+          "name": "nivel",
+          "type": "text"
         }
       ],
-      "outputType": "array"
-    }
-  },
-  "painel_admin": {
-    "data_detail_detalhes_task": {
-      "meta": [
-        {
-          "type": "number",
-          "name": "id"
-        },
-        {
-          "type": "number",
-          "name": "usuario_id"
-        },
-        {
-          "type": "number",
-          "name": "tarefa_id"
-        },
-        {
-          "type": "datetime",
-          "name": "data_atribuicao"
-        },
-        {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "datetime",
-          "name": "data_enviada"
-        },
-        {
-          "type": "datetime",
-          "name": "data_aprovada"
-        },
-        {
-          "type": "text",
-          "name": "info_envio"
-        },
-        {
-          "type": "text",
-          "name": "nome_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "descricao_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nivel_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nome_usuario"
-        },
-        {
-          "type": "text",
-          "name": "foto_usuario"
-        }
-      ],
-      "outputType": "array"
+      "outputType": "text"
     },
-    "data_detail_detalhes_envio": {
+    "data_detalhes_tarefa": {
       "meta": [
         {
-          "type": "number",
-          "name": "id"
+          "name": "id",
+          "type": "number"
         },
         {
-          "type": "number",
-          "name": "usuario_id"
+          "name": "nome",
+          "type": "text"
         },
         {
-          "type": "number",
-          "name": "tarefa_id"
+          "name": "descricao",
+          "type": "text"
         },
         {
-          "type": "datetime",
-          "name": "data_atribuicao"
+          "name": "estimativa_horas",
+          "type": "number"
         },
         {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "datetime",
-          "name": "data_enviada"
-        },
-        {
-          "type": "datetime",
-          "name": "data_aprovada"
-        },
-        {
-          "type": "text",
-          "name": "info_envio"
-        },
-        {
-          "type": "text",
-          "name": "nome_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "descricao_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nivel_tarefa"
-        },
-        {
-          "type": "text",
-          "name": "nome_usuario"
-        },
-        {
-          "type": "text",
-          "name": "foto_usuario"
+          "name": "nivel",
+          "type": "text"
         }
       ],
-      "outputType": "array"
+      "outputType": "text"
     }
   },
-  "alunos": {
-    "repeat_todos_alunos": {
+  "ranking_selos": {
+    "repeat_ranking": {
       "meta": [
         {
-          "type": "number",
-          "name": "id"
+          "name": "ranking",
+          "type": "number"
         },
         {
-          "type": "text",
-          "name": "nome"
+          "name": "nome",
+          "type": "text"
         },
         {
-          "type": "text",
-          "name": "email"
+          "name": "foto",
+          "type": "text"
         },
         {
-          "type": "text",
-          "name": "senha"
-        },
-        {
-          "type": "text",
-          "name": "cargo"
-        },
-        {
-          "type": "text",
-          "name": "telefone"
-        },
-        {
-          "type": "text",
-          "name": "foto"
-        },
-        {
-          "type": "number",
-          "name": "permissao"
+          "name": "total_pontos",
+          "type": "number"
         }
       ],
-      "outputType": "array"
+      "outputType": "text"
     }
+  },
+  "resete_senha": {
+    "query": [
+      {
+        "type": "text",
+        "name": "token"
+      }
+    ]
   }
 });

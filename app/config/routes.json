@@ -139,6 +139,16 @@
       "path": "/",
       "page": "index",
       "layout": "main"
+    },
+    {
+      "path": "/ranking_selos",
+      "page": "ranking_selos",
+      "layout": "dashboard_aluno"
+    },
+    {
+      "path": "/usuarios/resete_senha/:token",
+      "page": "usuarios/resete_senha",
+      "layout": "main"
     }
   ],
   "layouts": {

@@ -2,7 +2,7 @@
 
 <head>
     <script src="/dmxAppConnect/dmxAppConnect.js"></script>
-    <meta name="ac:route" content="/usuarios/cadastro">
+    <meta name="ac:route" content="/cadastro">
     <base href="/usuarios/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-12 text-start">
                                     <label for="inp_email" class="form-label">Telefone</label>
-                                    <input type="number" class="form-control" id="inp_telefone" placeholder="(99) 010101010" name="telefone" required="" data-msg-required="Obrigatório!" data-rule-number="" data-msg-number="Digite um número válido!">
+                                    <input class="form-control" id="inp_telefone" placeholder="(99) 010101010" name="telefone" required="" data-msg-required="Obrigatório!" data-rule-number="" data-msg-number="Digite um número válido!">
                                 </div>
                                 <div class="col-12 text-start">
                                     <label for="inp_email" class="form-label">Cargo ou função</label>
@@ -105,7 +105,41 @@
 
 
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const telefoneInput = document.getElementById("inp_telefone");
 
+    telefoneInput.addEventListener("input", function (e) {
+        let telefone = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+        // Aplica a máscara de telefone (XX) XXXXX-XXXX
+        if (telefone.length > 10) {
+            telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else if (telefone.length > 6) {
+            telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+        } else if (telefone.length > 2) {
+            telefone = telefone.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+        }
+
+        e.target.value = telefone;
+    });
+
+    telefoneInput.addEventListener("blur", function () {
+        telefoneInput.value = telefoneInput.value.replace(/\D/g, ""); // Remove a máscara ao perder o foco
+    });
+
+    telefoneInput.addEventListener("focus", function () {
+        let telefone = telefoneInput.value.replace(/\D/g, ""); // Reaplica a máscara ao focar no campo
+        if (telefone.length > 10) {
+            telefoneInput.value = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else if (telefone.length > 6) {
+            telefoneInput.value = telefone.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+        } else if (telefone.length > 2) {
+            telefoneInput.value = telefone.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+        }
+    });
+});
+    </script>
     <script src="/bootstrap/5/js/bootstrap.min.js"></script>
     <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>
